@@ -151,7 +151,7 @@ def write2F(Data, PATH2file):
         f.close()
         return True
     if chemin and fichier:
-        a = input("Le fichier existe déjà, l'écraser ?").lower()
+        a = input("Le fichier existe déjà, l'écraser ?? ").lower()
         if a == 'y' or a == 'yes' or a == 'ok' or a == 'oui' or a == 'o':
             os.chdir(chemin)
             f = open(fichier, 'w')
@@ -186,9 +186,28 @@ def write2F(Data, PATH2file):
         raise Exception('Not a valid PATH.')
         return False
 
+def formatText(rawData):
+    ''' Le texte obtenu n'est pas dans le bon format.
+    Retourne Le texte dans le format correct.
+    '''
+    var = str(rawData)[2:-3]
+    print(var[0:15], var[-20:-1])
+    var = var.replace(r'\n', '\n').replace(r'\t', '\t')
+    return var
+    
+
+def parseXMLheader(fichierIn, fichierOut):
+    ''' Parser le fichier XML obtenu, et créer les strings correspondantes.
+    Retourne True si Ok. False sinon.
+    '''
+    pass
+
 
 URL = "http://techpatterns.com/downloads/firefox/useragentswitcher.xml"
 Data = getURL(URL)
+Data = formatText(Data)
 boolWritten = write2F(Data, "/tmp/azeffqdsf")
+
+
 
 
